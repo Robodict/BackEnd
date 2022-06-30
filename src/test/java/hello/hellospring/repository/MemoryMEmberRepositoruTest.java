@@ -22,7 +22,8 @@ public class MemoryMEmberRepositoruTest {
     public void save() {
         Member member = new Member();
         member.setName("한범수");
-        repository.save(member);
+        member.setPassword("1234");
+        repository.save(member, member);
 
         Member result = repository.findById(member.getId()).get();
         assertThat(member).isEqualTo(result);
@@ -32,11 +33,13 @@ public class MemoryMEmberRepositoruTest {
     public void findByname() {
         Member member1 = new Member();
         member1.setName("장윤수");
-        repository.save(member1);
+        member1.setPassword("12");
+        repository.save(member1, member1);
 
         Member member2 = new Member();
         member2.setName("박지수");
-        repository.save(member2);
+        member2.setPassword("13");
+        repository.save(member2, member2);
 
         Member result = repository.findByname("장윤수").get();
 

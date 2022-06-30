@@ -39,7 +39,7 @@ class MemberServiceTest {
         member.setName("hello");
 
         //when
-        Long saveId = memberService.join(member);
+        Long saveId = memberService.join(member, member);
 
         //then
         Member findMember = memberService.findOne(saveId).get();
@@ -59,8 +59,8 @@ class MemberServiceTest {
 
         // when
 
-        memberService.join(member1);
-        assertThrows(IllegalStateException.class, () -> memberService.join(member2));
+        memberService.join(member1, member1);
+        assertThrows(IllegalStateException.class, () -> memberService.join(member2, member2));
         /*try {
             memberService.join(member2);
         } catch (IllegalStateException e){

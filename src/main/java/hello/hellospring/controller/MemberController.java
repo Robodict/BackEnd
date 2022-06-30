@@ -29,8 +29,9 @@ public class MemberController {
     public String create(MemberForm form){
         Member member = new Member();
         member.setName(form.getName());
+        member.setPassword(form.getPs());
 
-        memberService.join(member);
+        memberService.join(member, member);
         return "redirect:/";
     }
 
@@ -38,9 +39,11 @@ public class MemberController {
 
 
     @GetMapping("/members")
-        public String list(Model model){
+        public String list(Model model, Model ps){
         List<Member> members = memberService.findMembers();
         model.addAttribute("members", members);
+
+
         return "members/memberList";
     }
 
